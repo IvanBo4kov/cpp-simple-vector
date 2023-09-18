@@ -49,10 +49,12 @@ public:
     }
 
     Type& operator[](size_t index) noexcept {
+        assert(index < size_);
         return data_[index];
     }
 
     const Type& operator[](size_t index) const noexcept {
+        assert(index < size_);
         return data_[index];
     }
 
@@ -180,8 +182,10 @@ public:
     }
 
     Iterator Insert(ConstIterator position, const Type& value) {
-        size_t position_offset = position - data_.Get();
-        assert(position_offset <= size_);
+        assert(position >= begin() && position <= end());
+
+        int position_offset = position - data_.Get();
+        assert(position_offset >= 0 && position_offset <= size_);
         Iterator element_position = data_.Get() + position_offset;
 
         size_t new_size = size_ + 1;
@@ -206,8 +210,10 @@ public:
     }
 
     Iterator Insert(ConstIterator position, Type&& value) {
-        size_t position_offset = position - data_.Get();
-        assert(position_offset <= size_);
+        assert(position >= begin() && position <= end());
+
+        int position_offset = position - data_.Get();
+        assert(position_offset >= 0 && position_offset <= size_);
         Iterator element_position = data_.Get() + position_offset;
 
         size_t new_size = size_ + 1;
