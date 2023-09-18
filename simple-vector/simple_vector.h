@@ -185,7 +185,6 @@ public:
         assert(position >= begin() && position <= end());
 
         int position_offset = position - data_.Get();
-        assert(position_offset >= 0 && position_offset <= size_);
         Iterator element_position = data_.Get() + position_offset;
 
         size_t new_size = size_ + 1;
@@ -213,7 +212,6 @@ public:
         assert(position >= begin() && position <= end());
 
         int position_offset = position - data_.Get();
-        assert(position_offset >= 0 && position_offset <= size_);
         Iterator element_position = data_.Get() + position_offset;
 
         size_t new_size = size_ + 1;
